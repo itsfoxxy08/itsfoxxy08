@@ -17,12 +17,6 @@
 <p align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=itsfoxxy08&theme=nightowl&no-frame=true&no-bg=true&margin-w=4&cache_seconds=86400" alt="Vikas Choudhary's GitHub Trophies" />
 </p>
-<p align="center">
-  <a href="https://github.com/itsfoxxy08">
-    <img src="https://www.gitskins.com/api/section/heatmap?username=itsfoxxy08&theme=github-dark&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&variant=space-shooter&v=space-jet-original-2&mode=dark" width="100%" alt="itsfoxxy08 animated contribution jet" />
-  </a>
-</p>
-
 ## 🛠️ Languages & Tools
 
 > ## Programming Languages
@@ -46,3 +40,8 @@
 ## 🔗 Connect with Me
 <p align="center"><a href="https://www.linkedin.com/in/your-handle" target="_blank"><img src="https://raw.githubusercontent.com/gauravghongde/social-icons/9d939e1c5b7ea4a24ac39c3e4631970c0aa1b920/SVG/Color/LinkedIN.svg" alt="LinkedIN" width="40" height="40" style="margin: 0 8px;"/></a> <a href="mailto:you@example.com" target="_blank"><img src="https://raw.githubusercontent.com/gauravghongde/social-icons/9d939e1c5b7ea4a24ac39c3e4631970c0aa1b920/SVG/Color/Gmail.svg" alt="Gmail" width="40" height="40" style="margin: 0 8px;"/></a></p>
 
+<p align="center">
+  <a href="https://github.com/itsfoxxy08">
+    <img src="https://www.gitskins.com/api/section/heatmap?username=itsfoxxy08&theme=github-dark&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&variant=space-shooter&v=space-jet-original-2&mode=dark" width="100%" alt="itsfoxxy08 animated contribution jet" />
+  </a>
+</p>
