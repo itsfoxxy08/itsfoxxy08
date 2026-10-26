@@ -10,8 +10,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   update-contribution-city:
@@ -27,20 +25,6 @@ jobs:
 
       - name: Refresh contribution city
         run: node scripts/update-contribution-city.mjs
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Upload interactive city site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-      - name: Deploy interactive city site
-        id: deployment
-        uses: actions/deploy-pages@v4
 
       - name: Commit updated contribution city
         run: |
