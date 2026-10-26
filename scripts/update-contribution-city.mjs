@@ -6,6 +6,7 @@ import path from "node:path";
 const username = "itsfoxxy08";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const cityPath = path.join(root, "assets", "contribution-city.svg");
+const siteDataPath = path.join(root, "site", "contributions.json");
 const readmePath = path.join(root, "README.md");
 
 async function fetchContributions() {
@@ -58,6 +59,15 @@ async function fetchContributions() {
   }
 
   return days;
+}
+
+async function writeSiteData(days) {
+  await mkdir(path.dirname(siteDataPath), { recursive: true });
+  await writeFile(
+    siteDataPath,
+    `${JSON.stringify(days.map(({ date, count, level }) => ({ date, count, level })), null, 2)}\n`,
+    "utf8",
+  );
 }
 
 function polygon(points, fill, stroke = "none") {
@@ -123,6 +133,7 @@ function createCity(days) {
 }
 
 const days = await fetchContributions();
+await writeSiteData(days);
 const svg = createCity(days);
 await mkdir(path.dirname(cityPath), { recursive: true });
 const previousSvg = await readFile(cityPath, "utf8").catch((error) => {
@@ -134,7 +145,7 @@ if (svg !== previousSvg) {
   await writeFile(cityPath, svg, "utf8");
   const hash = createHash("sha256").update(svg).digest("hex").slice(0, 12);
   const readme = await readFile(readmePath, "utf8");
-  const imageTag = /<img src="assets\/contribution-city\.svg(?:\?v=[a-f0-9]+)?" width="100%" alt="Isometric green GitHub contribution city" \/>/;
+  const imageTag = /<img src="assets\/contribution-city\.svg(?:\?v=[a-f0-9]+)?" width="100%" alt="Isometric green GitHub contribution city(?: — open for 360° rotation)?" \/>/;
   if (!imageTag.test(readme)) {
     throw new Error("Could not find the contribution city image in README.md");
   }
@@ -143,7 +154,7 @@ if (svg !== previousSvg) {
     readmePath,
     readme.replace(
       imageTag,
-      `<img src="assets/contribution-city.svg?v=${hash}" width="100%" alt="Isometric green GitHub contribution city" />`,
+      `<img src="assets/contribution-city.svg?v=${hash}" width="100%" alt="Isometric green GitHub contribution city — open for 360° rotation" />`,
     ),
     "utf8",
   );

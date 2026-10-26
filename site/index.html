@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#050805">
+  <title>Interactive Contribution City · itsfoxxy08</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      background: #050805;
+      color: #d8eadb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(ellipse at 50% 45%, #0b180e 0, #050805 70%);
+    }
+
+    main {
+      width: min(100%, 1100px);
+      padding: 28px clamp(12px, 4vw, 48px) 24px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      color: #9be6a7;
+      font-size: clamp(18px, 3vw, 27px);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 12px 0 20px;
+      color: #85a98b;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .stage {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 1.9;
+      min-height: 300px;
+      border: 1px solid #16331e;
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse at 50% 60%, rgb(13 38 19 / 48%), transparent 68%),
+        #050805;
+      touch-action: none;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .stage:active { cursor: grabbing; }
+    .stage:focus-visible { outline: 2px solid #47c96a; outline-offset: 4px; }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    button, a {
+      border: 1px solid #245b31;
+      border-radius: 7px;
+      background: #0a170d;
+      color: #b5edbe;
+      font: inherit;
+      font-size: 12px;
+      padding: 9px 13px;
+      text-decoration: none;
+    }
+
+    button { cursor: pointer; }
+    button:hover, a:hover { background: #102818; }
+    button:focus-visible, a:focus-visible { outline: 2px solid #47c96a; outline-offset: 3px; }
+
+    #status { min-width: 190px; margin: 0; font-size: 11px; }
+
+    @media (max-width: 600px) {
+      .stage { aspect-ratio: 1.25; min-height: 260px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Contribution City</h1>
+    <p>Drag to orbit 360° · Scroll or pinch to zoom · Use arrow keys when the city is focused</p>
+    <div class="stage" id="stage" tabindex="0" role="application" aria-label="Interactive 3D contribution city. Drag to rotate, scroll to zoom, or use arrow keys.">
+      <canvas id="city"></canvas>
+    </div>
+    <div class="controls">
+      <button id="reset" type="button">Reset view</button>
+      <p id="status" role="status" aria-live="polite">Loading contribution data…</p>
+      <a href="https://github.com/itsfoxxy08">Back to GitHub</a>
+    </div>
+  </main>
+  <script>
+    const stage = document.querySelector("#stage");
+    const canvas = document.querySelector("#city");
+    const context = canvas.getContext("2d");
+    const status = document.querySelector("#status");
+    const days = [];
+    const heights = [0, 0.42, 0.9, 1.46, 2.18];
+    let yaw = -0.72;
+    let pitch = 0.65;
+    let zoom = 1;
+    let pointer = null;
+
+    function resizeCanvas() {
+      const bounds = stage.getBoundingClientRect();
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(bounds.width * pixelRatio);
+      canvas.height = Math.round(bounds.height * pixelRatio);
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      draw();
+    }
+
+    function project(x, y, z, centerX, centerY, scale) {
+      const cosYaw = Math.cos(yaw);
+      const sinYaw = Math.sin(yaw);
+      const rotatedX = x * cosYaw - z * sinYaw;
+      const depth = x * sinYaw + z * cosYaw;
+      const cosPitch = Math.cos(pitch);
+      const sinPitch = Math.sin(pitch);
+      return {
+        x: centerX + rotatedX * scale,
+        y: centerY + (depth * cosPitch - y * sinPitch) * scale,
+        depth: depth * sinPitch + y * cosPitch,
+      };
+    }
+
+    function drawPolygon(points, color, stroke) {
+      context.beginPath();
+      context.moveTo(points[0].x, points[0].y);
+      for (let index = 1; index < points.length; index += 1) {
+        context.lineTo(points[index].x, points[index].y);
+      }
+      context.closePath();
+      context.fillStyle = color;
+      context.fill();
+      if (stroke) {
+        context.strokeStyle = stroke;
+        context.lineWidth = 0.7;
+        context.stroke();
+      }
+    }
+
+    function draw() {
+      const bounds = stage.getBoundingClientRect();
+      const width = bounds.width;
+      const height = bounds.height;
+      context.clearRect(0, 0, width, height);
+      if (days.length === 0) return;
+
+      const scale = Math.min(width / 82, height / 47) * zoom;
+      const centerX = width / 2;
+      const centerY = height * 0.55;
+      const firstDate = new Date(`${days[0].date}T00:00:00Z`);
+      const cells = days.map((day) => {
+        const date = new Date(`${day.date}T00:00:00Z`);
+        const week = Math.floor((date - firstDate) / 604800000);
+        const weekday = date.getUTCDay();
+        return {
+          ...day,
+          x: (week - 26) * 0.92,
+          z: (weekday - 3) * 1.08,
+        };
+      });
+      cells.sort((a, b) => {
+        const depthA = a.x * Math.sin(yaw) + a.z * Math.cos(yaw);
+        const depthB = b.x * Math.sin(yaw) + b.z * Math.cos(yaw);
+        return depthA - depthB;
+      });
+
+      for (const cell of cells) {
+        const { x, z, level, count } = cell;
+        const buildingHeight = count > 0 ? (heights[level] ?? 0) : 0;
+        const half = 0.43;
+        const corners = [
+          [x - half, z - half],
+          [x + half, z - half],
+          [x + half, z + half],
+          [x - half, z + half],
+        ];
+        const base = corners.map(([cornerX, cornerZ]) =>
+          project(cornerX, 0, cornerZ, centerX, centerY, scale),
+        );
+        const top = corners.map(([cornerX, cornerZ]) =>
+          project(cornerX, buildingHeight, cornerZ, centerX, centerY, scale),
+        );
+
+        if (count === 0) {
+          drawPolygon(base, "transparent", "rgba(67, 132, 78, .28)");
+          continue;
+        }
+
+        drawPolygon([base[1], base[2], top[2], top[1]], "#0a2812", "#123c1d");
+        drawPolygon([base[2], base[3], top[3], top[2]], "#10401b", "#175127");
+        drawPolygon(top, ["#0b2913", "#155326", "#238238", "#37ae50", "#54d66d"][level], "#7bea8d");
+      }
+    }
+
+    stage.addEventListener("pointerdown", (event) => {
+      pointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
+      stage.setPointerCapture(event.pointerId);
+    });
+
+    stage.addEventListener("pointermove", (event) => {
+      if (!pointer || pointer.id !== event.pointerId) return;
+      yaw += (event.clientX - pointer.x) * 0.012;
+      pitch = Math.max(0.18, Math.min(1.25, pitch + (event.clientY - pointer.y) * 0.006));
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+      draw();
+    });
+
+    function releasePointer(event) {
+      if (pointer?.id === event.pointerId) pointer = null;
+    }
+    stage.addEventListener("pointerup", releasePointer);
+    stage.addEventListener("pointercancel", releasePointer);
+
+    stage.addEventListener("wheel", (event) => {
+      event.preventDefault();
+      zoom = Math.max(0.65, Math.min(2.2, zoom * (event.deltaY > 0 ? 0.92 : 1.08)));
+      draw();
+    }, { passive: false });
+
+    stage.addEventListener("keydown", (event) => {
+      const turn = 0.12;
+      if (event.key === "ArrowLeft") yaw -= turn;
+      else if (event.key === "ArrowRight") yaw += turn;
+      else if (event.key === "ArrowUp") pitch = Math.min(1.25, pitch + turn);
+      else if (event.key === "ArrowDown") pitch = Math.max(0.18, pitch - turn);
+      else return;
+      event.preventDefault();
+      draw();
+    });
+
+    document.querySelector("#reset").addEventListener("click", () => {
+      yaw = -0.72;
+      pitch = 0.65;
+      zoom = 1;
+      draw();
+    });
+
+    new ResizeObserver(resizeCanvas).observe(stage);
+
+    fetch("./contributions.json", { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Contribution data returned ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data) || data.length < 360 || data.length > 380) {
+          throw new Error("Contribution data is incomplete.");
+        }
+        days.push(...data);
+        const total = days.reduce((sum, day) => sum + day.count, 0);
+        status.textContent = `${total.toLocaleString()} contributions · last 12 months`;
+        draw();
+      })
+      .catch((error) => {
+        status.textContent = "Could not load contribution data. Please try again later.";
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
