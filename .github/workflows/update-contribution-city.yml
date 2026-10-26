@@ -10,6 +10,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   update-contribution-city:
@@ -38,3 +40,38 @@ jobs:
           git add README.md assets/contribution-city.svg site/contributions.json
           git commit -m "Update contribution city"
           git push
+
+      - name: Check whether GitHub Pages is enabled
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          status="$(curl --silent --show-error --output "$RUNNER_TEMP/pages.json" --write-out "%{http_code}" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages")"
+
+          if [ "$status" = "200" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          elif [ "$status" = "404" ]; then
+            echo "GitHub Pages is not enabled; automatic city refresh completed, deployment skipped."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            cat "$RUNNER_TEMP/pages.json"
+            echo "Could not check GitHub Pages configuration (HTTP $status)." >&2
+            exit 1
+          fi
+
+      - name: Configure GitHub Pages
+        if: steps.pages.outputs.enabled == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Upload interactive city site
+        if: steps.pages.outputs.enabled == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy interactive city site
+        if: steps.pages.outputs.enabled == 'true'
+        uses: actions/deploy-pages@v4
