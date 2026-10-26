@@ -1,130 +1,93 @@
-### `🎮 WELCOME TO MY WORLD`
-**Vikas Choudhary** · `@itsfoxxy08`
+<div align="center">
 
-*Computer Science Student | Developer | Future Systems Architect*
+<p><code>itsfoxxy08@github ~ $ neofetch --live</code></p>
 
-![Status](https://img.shields.io/badge/STATUS-ONLINE-00ff99?style=for-the-badge&labelColor=101010)
-![Class](https://img.shields.io/badge/CLASS-FULL--STACK-00ccff?style=for-the-badge&labelColor=101010)
-![Level](https://img.shields.io/badge/LEVEL-LOADING-ffcc00?style=for-the-badge&labelColor=101010)
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://www.gitskins.com/api/section/portrait?username=itsfoxxy08&theme=github-dark&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&style=terminal&color=1&v=terminal-portrait-1&mode=light" />
+  <img src="https://www.gitskins.com/api/section/portrait?username=itsfoxxy08&theme=github-dark&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&style=terminal&color=1&v=terminal-portrait-1&mode=dark" width="680" alt="Vikas Choudhary animated terminal portrait" />
+</picture>
+
+<br/>
+
+**Computer Science Engineer · Developer · Builder**
+
+[GitHub](https://github.com/itsfoxxy08) · [Website](https://guns.lol/itsfoxxy)
+
+</div>
 
 ---
 
-## 🧑 PLAYER PROFILE
-**PLAYER 001**
+### `01 / ABOUT`
 
-`VIKAS.EXE`
-
+```text
+NAME      Vikas Choudhary
+USERNAME  itsfoxxy08
+ROLE      Computer Science Student & Developer
+LOCATION  India
+FOCUS     Full-Stack Development · AI/ML · Software Engineering
+STATUS    Building, learning, shipping.
 ```
-╔════════════════════════════════╗
-║       PLAYER INFORMATION       ║
-╠════════════════════════════════╣
-║ NAME   : Vikas Choudhary       ║
-║ CLASS  : Computer Science      ║
-║ ROLE   : Developer             ║
-║ BASE   : India                 ║
-║ MODE   : Learn & Build         ║
-╠════════════════════════════════╣
-║ CURRENT QUEST:                 ║
-║ Building useful digital worlds ║
-╚════════════════════════════════╝
-```
 
-- 🔭 Building web applications and practical software projects.
-- 🌱 Exploring full-stack development, AI/ML, and software engineering.
-- ⚙️ Interested in turning ideas into working products.
-- 🎯 Mission: learn consistently, build better systems, and ship projects.
+I'm a computer science student interested in building useful software, exploring new technologies, and turning ideas into working products.
 
-## 🗺️ WORLD MAP — MY QUESTS
+Currently exploring full-stack development, AI-powered applications, and practical software engineering.
 
-> Every project is another level completed. More worlds are under construction.
+### `02 / TECH STACK`
 
-### 🏥 QUEST 01: RAPID-HEALTH
-**Type:** AI / Healthcare
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=python,cpp,js,ts,html,css,nodejs,mongodb,mysql,git,github,linux&theme=dark" alt="Technology stack" />
+</p>
 
-A health-focused project exploring AI-assisted symptom interpretation and preliminary health guidance.
+### `03 / SELECTED PROJECTS`
 
-`PYTHON` `AI` `NLP`
+| Project                                                                    | Description                             | Stack        |
+| -------------------------------------------------------------------------- | --------------------------------------- | ------------ |
+| [Rapid-Health](https://github.com/itsfoxxy08/Rapid-Health)                 | AI-assisted health triage project       | Python · NLP |
+| [Yours-Clinic](https://github.com/itsfoxxy08/Yours-Clinic)                 | Healthcare-focused web application      | TypeScript   |
+| [Nyaya Setu](https://github.com/itsfoxxy08/Nyaya-Setu)                     | Legal technology project                | JavaScript   |
+| [C++](https://github.com/itsfoxxy08/C-)                                    | C++ programming and practice            | C++          |
+| [Digital Literacy](https://github.com/itsfoxxy08/digital-literacy-project) | Digital skills and cyber safety project | Multiple     |
 
-[**ENTER WORLD →**](https://github.com/itsfoxxy08/Rapid-Health)
+### `04 / GITHUB ANALYTICS`
 
-### ⚖️ QUEST 02: NYAYA SETU
-**Type:** Legal Technology
+<div align="center">
 
-A project exploring how technology can help make legal information and services more accessible.
+<img src="https://github-readme-stats.vercel.app/api?username=itsfoxxy08&show_icons=true&theme=github_dark&hide_border=true&rank_icon=github" height="170" alt="GitHub statistics" />
 
-`JAVASCRIPT` `WEB DEV`
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itsfoxxy08&layout=compact&theme=github_dark&hide_border=true&langs_count=8" height="170" alt="Most-used languages" />
 
-[**ENTER WORLD →**](https://github.com/itsfoxxy08/Nyaya-Setu)
+<br/>
 
-### 🩺 QUEST 03: YOURS CLINIC
-**Type:** Web Development
+<img src="https://streak-stats.demolab.com?user=itsfoxxy08&theme=github-dark-blue&hide_border=true" width="70%" alt="GitHub contribution streak" />
 
-A clinic-focused web project built around presenting healthcare services through a digital interface.
+</div>
 
-`TYPESCRIPT` `WEB DEV`
+### `05 / CONTRIBUTION ACTIVITY`
 
-[**ENTER WORLD →**](https://github.com/itsfoxxy08/Yours-Clinic)
+<div align="center">
 
-### 💻 QUEST 04: C++
-**Type:** Programming
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=itsfoxxy08&theme=github-compact&hide_border=true&area=true" width="100%" alt="Contribution activity graph" />
 
-A space for C++ programming, problem-solving, and learning core programming concepts.
+</div>
 
-`C++` `PROBLEM SOLVING`
+### `06 / CONNECT`
 
-[**ENTER WORLD →**](https://github.com/itsfoxxy08/C-)
+<div align="left">
 
-### 📜 BONUS QUEST: DIGITAL LITERACY
-A project focused on digital presence, coding platforms, professional communication, and cyber safety.
+[![GitHub](https://img.shields.io/badge/GitHub-itsfoxxy08-181717?style=flat-square\&logo=github)](https://github.com/itsfoxxy08)
+[![Website](https://img.shields.io/badge/Website-Visit-333333?style=flat-square\&logo=googlechrome\&logoColor=white)](https://guns.lol/itsfoxxy)
 
-[**VIEW QUEST →**](https://github.com/itsfoxxy08/digital-literacy-project)
+<!-- Add more social links when ready.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](YOUR_LINKEDIN_URL)
+[![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=flat-square&logo=instagram)](YOUR_INSTAGRAM_URL)
+-->
+
+</div>
 
 ---
 
-## ⚔️ SKILL TREE
-*Every skill earns XP through practice, projects, and experimentation.*
+<div align="center">
 
-### 🟢 WEB DEVELOPMENT
+<sub>Building useful things, one commit at a time.</sub>
 
-### 🔵 PROGRAMMING
-
-### 🟣 EXPANDING THE SKILL TREE
-
-> The expanding skill tree shows technologies to explore, not a claim of proficiency in every tool.
-
----
-
-## 📊 PLAYER STATISTICS
-
-### 🕹️ XP HISTORY
-
----
-
-## 🏆 ACHIEVEMENT UNLOCKED
-
-### 🛠️
-**THE BUILDER**
-
-Started turning ideas into projects.
-
-### 🧠
-**THE EXPLORER**
-
-Continually learning new technologies.
-
-### 🚀
-**THE SHIPPER**
-
-Working toward delivering useful software.
-
----
-
-## 🌐 MULTIPLAYER — CONNECT WITH ME
-**Got an interesting project? Let's build something.**
-
----
-
-### `> GAME STATUS: IN DEVELOPMENT`
-*Still learning. Still building. Still gaining XP.*
-
-PLAYER: VIKAS.EXE · WORLD: GITHUB · VERSION: 1.0
+</div>
