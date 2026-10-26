@@ -1,52 +1,19 @@
-<div align="center">
-
-<img src="assets/profile-hero.svg?v=a04a88d4050b" width="100%" alt="Vikas Choudhary profile and automatically updated GitHub statistics" />
-
-<p><strong>Frontend or full-stack engineer</strong> · Delhi, India</p>
-<p>Computer Science Engineer.</p>
-<p><a href="https://github.com/itsfoxxy08">GitHub</a> &nbsp;·&nbsp; <a href="https://guns.lol/itsfoxxy">Website</a></p>
-</div>
-
-## 📌 About Me
-- 💡 <em>✏️ A sentence about you and what you do.</em>
-
-## 📊 GitHub Stats & Trophies
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=itsfoxxy08&show_icons=true&theme=nightowl&hide_border=true&count_private=true&cache_seconds=86400" alt="itsfoxxy08's GitHub Stats" width="49%" />
-  <img src="https://streak-stats.demolab.com/?user=itsfoxxy08&theme=nightowl&hide_border=true&cache_seconds=86400" alt="itsfoxxy08's GitHub Streak" width="49%" />
+<img src="https://www.gitskins.com/api/section/hero?username=itsfoxxy08&theme=aurora&style=aura&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&v=showcase-hero-1" alt="Vikas Choudhary hero visual" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itsfoxxy08&layout=compact&theme=nightowl&hide_border=true&langs_count=10&cache_seconds=86400" alt="Top Languages" />
+<img src="https://www.gitskins.com/api/section/portrait?username=itsfoxxy08&theme=aurora&style=aura&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&color=1&v=showcase-portrait-1" alt="Vikas Choudhary portrait visual" />
 </p>
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=itsfoxxy08&theme=nightowl&no-frame=true&no-bg=true&margin-w=4&cache_seconds=86400" alt="Vikas Choudhary's GitHub Trophies" />
-</p>
-## 🛠️ Languages & Tools
-
-> ## Programming Languages
-<p align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="PHP" width="48" height="48" style="margin: 4px;" /></p>
-
-> ## Frontend
-<p align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width="48" height="48" style="margin: 4px;" /> <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="Next.js" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="CSS3" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="Tailwind CSS" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" width="48" height="48" style="margin: 4px;" /></p>
-
-> ## Backend
-<p align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="Express.js" width="48" height="48" style="margin: 4px;" /></p>
-
-> ## Database
-<p align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="MongoDB" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="Redis" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg" alt="SQLite" width="48" height="48" style="margin: 4px;" /></p>
-
-> ## DevOps & Cloud
-<p align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="Kubernetes" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="Google Cloud" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" alt="Azure" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" alt="Jenkins" width="48" height="48" style="margin: 4px;" /></p>
-
-> ## Tools
-<p align="center"><img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="VS Code" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="Figma" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="Postman" width="48" height="48" style="margin: 4px;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/webpack/webpack-original.svg" alt="Webpack" width="48" height="48" style="margin: 4px;" /> <img src="https://www.vectorlogo.zone/logos/vitejsdev/vitejsdev-icon.svg" alt="Vite" width="48" height="48" style="margin: 4px;" /></p>
-
-## 🔗 Connect with Me
-<p align="center"><a href="https://www.linkedin.com/in/your-handle" target="_blank"><img src="https://raw.githubusercontent.com/gauravghongde/social-icons/9d939e1c5b7ea4a24ac39c3e4631970c0aa1b920/SVG/Color/LinkedIN.svg" alt="LinkedIN" width="40" height="40" style="margin: 0 8px;"/></a> <a href="mailto:you@example.com" target="_blank"><img src="https://raw.githubusercontent.com/gauravghongde/social-icons/9d939e1c5b7ea4a24ac39c3e4631970c0aa1b920/SVG/Color/Gmail.svg" alt="Gmail" width="40" height="40" style="margin: 0 8px;"/></a></p>
 
 <p align="center">
-  <a href="https://github.com/itsfoxxy08">
-    <img src="https://www.gitskins.com/api/section/heatmap?username=itsfoxxy08&theme=github-dark&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&variant=space-shooter&v=space-jet-original-2&mode=dark" width="100%" alt="itsfoxxy08 animated contribution jet" />
-  </a>
+<img src="https://www.gitskins.com/api/section/wordmark?username=itsfoxxy08&theme=aurora&style=aura&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&v=showcase-wordmark-3" alt="Vikas Choudhary wordmark visual" />
+</p>
+
+<p align="center">
+<img src="https://www.gitskins.com/api/section/stack?username=itsfoxxy08&theme=aurora&style=aura&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&v=showcase-stack-4" alt="Vikas Choudhary stack visual" />
+</p>
+
+<p align="center">
+<img src="https://www.gitskins.com/api/section/projects?username=itsfoxxy08&theme=aurora&style=aura&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&v=showcase-projects-5" alt="Vikas Choudhary projects visual" />
 </p>
