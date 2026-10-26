@@ -84,57 +84,118 @@ async function fetchStats() {
 
 function createHero({ repos, stars, contributions, followers }) {
   const stats = [
-    ["PUBLIC REPOS", repos],
+    ["REPOSITORIES", repos],
     ["STARS", stars],
-    ["CONTRIBUTIONS · 1Y", contributions],
+    ["CONTRIBUTIONS", contributions],
     ["FOLLOWERS", followers],
   ];
-  const columns = [72, 300, 528, 756];
+  const columns = [72, 282, 492, 702];
   const statsMarkup = stats
     .map(
       ([label, value], index) => `
-        <text x="${columns[index]}" y="364" class="label">${label}</text>
-        <text x="${columns[index]}" y="408" class="value">${value.toLocaleString("en-US")}</text>`,
+        <text x="${columns[index]}" y="456" class="label">${label}</text>
+        <text x="${columns[index]}" y="504" class="value">${value.toLocaleString("en-US")}</text>
+        <circle cx="${columns[index] + 168}" cy="459" r="3" class="signal-dot"/>`,
     )
     .join("");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="460" viewBox="0 0 1000 460" role="img" aria-labelledby="title description">
+  const portraitDots = [];
+  const foxShape = [
+    [5, 1], [7, 1], [8, 3], [10, 3], [11, 1], [13, 1],
+    [16, 6], [16, 11], [14, 14], [11, 15], [9, 17], [7, 15],
+    [4, 14], [2, 11], [2, 6],
+  ];
+  const pointInPolygon = (x, y, polygon) => {
+    let inside = false;
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i, i += 1) {
+      const [xi, yi] = polygon[i];
+      const [xj, yj] = polygon[j];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
+        inside = !inside;
+      }
+    }
+    return inside;
+  };
+
+  for (let row = 0; row < 19; row += 1) {
+    for (let column = 0; column < 19; column += 1) {
+      const x = 666 + column * 9;
+      const y = 120 + row * 9;
+      if (pointInPolygon(column, row, foxShape)) {
+        const eye = row === 8 && (column === 6 || column === 12);
+        const muzzle = row >= 11 && row <= 13 && column >= 7 && column <= 11;
+        const color = eye || muzzle
+          ? "#101a2c"
+          : (row + column) % 5 === 0 ? "#ffb454" : "#ff6b35";
+        portraitDots.push(`<circle cx="${x}" cy="${y}" r="2.25" fill="${color}"/>`);
+      } else if (column > 2 && column < 16 && row > 3 && row < 15 && (row * 3 + column) % 4 === 0) {
+        portraitDots.push(`<circle cx="${x}" cy="${y}" r="1.35" fill="#8191ad" opacity=".55"/>`);
+      }
+    }
+  }
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="576" viewBox="0 0 1040 576" role="img" aria-labelledby="title description">
   <title id="title">Vikas Choudhary · GitHub profile</title>
   <desc id="description">Profile overview with public repository, star, last-year contribution, and follower counts.</desc>
   <defs>
     <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#142543"/>
-      <stop offset="1" stop-color="#101522"/>
+      <stop offset="0" stop-color="#0d172a"/>
+      <stop offset="1" stop-color="#080d18"/>
     </linearGradient>
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M32 0H0V32" fill="none" stroke="#8294b5" stroke-opacity=".07"/>
+      <path d="M32 0H0V32" fill="none" stroke="#8294b5" stroke-opacity=".055"/>
     </pattern>
+    <pattern id="letter-dots" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.45" fill="#e0e8f5"/>
+      <circle cx="4.5" cy="4.5" r=".75" fill="#8c9bb3" opacity=".8"/>
+    </pattern>
+    <pattern id="portrait-dots" width="9" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="4.5" cy="4.5" r="2.1" fill="#ff713b"/>
+    </pattern>
+    <clipPath id="portrait-clip">
+      <circle cx="790" cy="246" r="168"/>
+    </clipPath>
+    <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
     <style>
       .mono { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
-      .sans { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
       .muted { fill: #91a2bd; }
-      .label { fill: #91a2bd; font: 11px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: 2px; }
-      .value { fill: #f1f5ff; font: 700 32px ui-monospace, SFMono-Regular, Consolas, monospace; }
+      .label { fill: #a3b2cb; font: 10px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: 2px; }
+      .value { fill: #f1f5ff; font: 700 27px ui-monospace, SFMono-Regular, Consolas, monospace; }
+      .signal-dot { fill: #3396f5; }
+      .orbit { transform-box: fill-box; transform-origin: center; animation: orbit 36s linear infinite; }
+      .orbit-inner { transform-box: fill-box; transform-origin: center; animation: orbit 48s linear infinite reverse; }
+      .pulse { animation: pulse 3.8s ease-in-out infinite; }
+      @keyframes orbit { to { transform: rotate(360deg); } }
+      @keyframes pulse { 50% { opacity: .45; } }
+      @media (prefers-reduced-motion: reduce) {
+        .orbit, .orbit-inner, .pulse { animation: none; }
+      }
     </style>
   </defs>
-  <rect x="1" y="1" width="998" height="458" rx="22" fill="#080d18" stroke="#26334a"/>
-  <rect x="1" y="1" width="998" height="458" rx="22" fill="url(#grid)"/>
-  <text x="44" y="40" class="mono muted" font-size="11" letter-spacing="3">PROFILE / LIVE SIGNAL</text>
-  <text x="956" y="40" text-anchor="end" class="mono muted" font-size="12">@itsfoxxy08</text>
-  <text x="46" y="112" class="mono" fill="#4da3ff" font-size="11" letter-spacing="4">HELLO, WORLD. I'M</text>
-  <text x="44" y="190" class="sans" fill="#f1f5ff" font-size="60" font-weight="750">Vikas</text>
-  <text x="44" y="254" class="sans" fill="#f1f5ff" font-size="60" font-weight="750">Choudhary</text>
-  <text x="48" y="303" class="mono" fill="#dce5f5" font-size="17">TypeScript / JavaScript / HTML</text>
-  <text x="48" y="331" class="mono muted" font-size="12">Delhi, India</text>
-  <circle cx="790" cy="190" r="138" fill="url(#glow)" stroke="#263b60"/>
-  <circle cx="790" cy="190" r="151" fill="none" stroke="#4578c8" stroke-opacity=".6" stroke-dasharray="164 22 52 24"/>
-  <circle cx="790" cy="190" r="119" fill="none" stroke="#7a69c9" stroke-opacity=".35" stroke-dasharray="2 9"/>
-  <path d="M730 235V145h25v-24h27v24h22v-39h28v39h27v-25h27v115h-27v-15H757v15z" fill="#ff6b35" opacity=".9"/>
-  <path d="M756 160h25v25h-25zm76-25h25v25h-25zm-25 50h25v25h-25zm-50 25h25v25h-25z" fill="#ffb454"/>
-  <path d="M44 344h912" stroke="#344158"/>
+  <rect x="1" y="1" width="1038" height="574" rx="22" fill="#080d18" stroke="#26334a"/>
+  <rect x="1" y="1" width="1038" height="574" rx="22" fill="url(#grid)"/>
+  <text x="32" y="34" class="mono muted" font-size="10" letter-spacing="3">LIVING IDENTITY</text>
+  <text x="1008" y="34" text-anchor="end" class="mono muted" font-size="11">@itsfoxxy08</text>
+  <text x="34" y="128" class="mono" fill="#4da3ff" font-size="10" letter-spacing="4">HELLO, WORLD. I'M</text>
+  <text x="32" y="198" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" fill="url(#letter-dots)" font-size="64" font-weight="800" letter-spacing="-2">Vikas</text>
+  <text x="32" y="278" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" fill="url(#letter-dots)" font-size="58" font-weight="800" letter-spacing="-3">Choudhary</text>
+  <text x="34" y="348" class="mono" fill="#dce5f5" font-size="16">TypeScript / JavaScript / HTML</text>
+  <text x="34" y="377" class="mono muted" font-size="11">Delhi, India</text>
+  <circle cx="790" cy="246" r="171" fill="#3076c8" opacity=".08" filter="url(#soft-glow)"/>
+  <circle cx="790" cy="246" r="169" fill="url(#glow)" stroke="#263b60"/>
+  <circle class="orbit" cx="790" cy="246" r="188" fill="none" stroke="#4578c8" stroke-opacity=".65" stroke-dasharray="155 18 42 20"/>
+  <circle class="orbit-inner" cx="790" cy="246" r="151" fill="none" stroke="#7a69c9" stroke-opacity=".3" stroke-dasharray="2 10"/>
+  <circle cx="790" cy="246" r="130" fill="none" stroke="#294268" stroke-opacity=".35" stroke-dasharray="1 8"/>
+  <g clip-path="url(#portrait-clip)">
+    ${portraitDots.join("\n    ")}
+  </g>
+  <circle class="pulse" cx="790" cy="246" r="3" fill="#ffb454"/>
+  <path d="M32 419h976" stroke="#344158"/>
   ${statsMarkup}
-  <path d="M44 426h912" stroke="#26334a"/>
-  <text x="956" y="445" text-anchor="end" class="mono muted" font-size="10">AUTO-UPDATED PROFILE STATS</text>
+  <path d="M32 532h976" stroke="#26334a"/>
+  <text x="1008" y="554" text-anchor="end" class="mono muted" font-size="9" letter-spacing="1.5">PROFILE STATS · AUTO-UPDATED</text>
 </svg>
 `;
 }
