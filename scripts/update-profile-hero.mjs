@@ -30,9 +30,44 @@ async function fetchJson(url) {
   return JSON.parse(body);
 }
 
+async function fetchAvatar(avatarUrl) {
+  const url = new URL(avatarUrl);
+  if (url.protocol !== "https:" || url.hostname !== "avatars.githubusercontent.com") {
+    throw new Error("GitHub returned an unexpected avatar URL");
+  }
+  url.searchParams.set("s", "512");
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": requestHeaders["User-Agent"],
+      Accept: "image/png, image/jpeg, image/webp",
+    },
+    signal: AbortSignal.timeout(20_000),
+  });
+  if (!response.ok) {
+    throw new Error(`GitHub avatar request failed with ${response.status}`);
+  }
+
+  const contentType = response.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
+  if (!["image/png", "image/jpeg", "image/webp"].includes(contentType)) {
+    throw new Error(`GitHub returned an unsupported avatar format: ${contentType ?? "unknown"}`);
+  }
+
+  const avatar = Buffer.from(await response.arrayBuffer());
+  if (avatar.length === 0 || avatar.length > 2_000_000) {
+    throw new Error(`GitHub avatar size is invalid: ${avatar.length} bytes`);
+  }
+
+  return `data:${contentType};base64,${avatar.toString("base64")}`;
+}
+
 async function fetchStats() {
   const user = await fetchJson(`https://api.github.com/users/${username}`);
-  if (!Number.isInteger(user.public_repos) || !Number.isInteger(user.followers)) {
+  if (
+    !Number.isInteger(user.public_repos)
+    || !Number.isInteger(user.followers)
+    || typeof user.avatar_url !== "string"
+  ) {
     throw new Error("GitHub user response did not include valid repository and follower counts");
   }
 
@@ -79,10 +114,11 @@ async function fetchStats() {
     stars,
     contributions: Number(contributionCount.replaceAll(",", "")),
     followers: user.followers,
+    avatar: await fetchAvatar(user.avatar_url),
   };
 }
 
-function createHero({ repos, stars, contributions, followers }) {
+function createHero({ repos, stars, contributions, followers, avatar }) {
   const stats = [
     ["REPOSITORIES", repos],
     ["STARS", stars],
@@ -99,41 +135,6 @@ function createHero({ repos, stars, contributions, followers }) {
     )
     .join("");
 
-  const portraitDots = [];
-  const foxShape = [
-    [5, 1], [7, 1], [8, 3], [10, 3], [11, 1], [13, 1],
-    [16, 6], [16, 11], [14, 14], [11, 15], [9, 17], [7, 15],
-    [4, 14], [2, 11], [2, 6],
-  ];
-  const pointInPolygon = (x, y, polygon) => {
-    let inside = false;
-    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i, i += 1) {
-      const [xi, yi] = polygon[i];
-      const [xj, yj] = polygon[j];
-      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
-        inside = !inside;
-      }
-    }
-    return inside;
-  };
-
-  for (let row = 0; row < 19; row += 1) {
-    for (let column = 0; column < 19; column += 1) {
-      const x = 666 + column * 9;
-      const y = 120 + row * 9;
-      if (pointInPolygon(column, row, foxShape)) {
-        const eye = row === 8 && (column === 6 || column === 12);
-        const muzzle = row >= 11 && row <= 13 && column >= 7 && column <= 11;
-        const color = eye || muzzle
-          ? "#101a2c"
-          : (row + column) % 5 === 0 ? "#ffb454" : "#ff6b35";
-        portraitDots.push(`<circle cx="${x}" cy="${y}" r="2.25" fill="${color}"/>`);
-      } else if (column > 2 && column < 16 && row > 3 && row < 15 && (row * 3 + column) % 4 === 0) {
-        portraitDots.push(`<circle cx="${x}" cy="${y}" r="1.35" fill="#8191ad" opacity=".55"/>`);
-      }
-    }
-  }
-
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="576" viewBox="0 0 1040 576" role="img" aria-labelledby="title description">
   <title id="title">Vikas Choudhary · GitHub profile</title>
   <desc id="description">Profile overview with public repository, star, last-year contribution, and follower counts.</desc>
@@ -149,14 +150,14 @@ function createHero({ repos, stars, contributions, followers }) {
       <circle cx="1.5" cy="1.5" r="1.45" fill="#e0e8f5"/>
       <circle cx="4.5" cy="4.5" r=".75" fill="#8c9bb3" opacity=".8"/>
     </pattern>
-    <pattern id="portrait-dots" width="9" height="9" patternUnits="userSpaceOnUse">
-      <circle cx="4.5" cy="4.5" r="2.1" fill="#ff713b"/>
-    </pattern>
     <clipPath id="portrait-clip">
       <circle cx="790" cy="246" r="168"/>
     </clipPath>
     <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="avatar-background" color-interpolation-filters="sRGB">
+      <feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 -1 -1 -1 3 0"/>
     </filter>
     <style>
       .mono { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
@@ -189,7 +190,8 @@ function createHero({ repos, stars, contributions, followers }) {
   <circle class="orbit-inner" cx="790" cy="246" r="151" fill="none" stroke="#7a69c9" stroke-opacity=".3" stroke-dasharray="2 10"/>
   <circle cx="790" cy="246" r="130" fill="none" stroke="#294268" stroke-opacity=".35" stroke-dasharray="1 8"/>
   <g clip-path="url(#portrait-clip)">
-    ${portraitDots.join("\n    ")}
+    <image href="${avatar}" x="650" y="106" width="280" height="280" preserveAspectRatio="xMidYMid meet" image-rendering="pixelated" filter="url(#avatar-background)"/>
+    <circle cx="790" cy="246" r="126" fill="url(#grid)" opacity=".32"/>
   </g>
   <circle class="pulse" cx="790" cy="246" r="3" fill="#ffb454"/>
   <path d="M32 419h976" stroke="#344158"/>

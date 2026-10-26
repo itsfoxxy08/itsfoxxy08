@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/profile-hero.svg?v=eec5db3f017d" width="100%" alt="Vikas Choudhary profile and automatically updated GitHub statistics" />
+<img src="assets/profile-hero.svg?v=a04a88d4050b" width="100%" alt="Vikas Choudhary profile and automatically updated GitHub statistics" />
 
 <p><strong>Frontend or full-stack engineer</strong> · Delhi, India</p>
 <p>Computer Science Engineer.</p>
