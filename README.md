@@ -1,11 +1,6 @@
 <div align="center">
 
-<p><sub>WOW PROFILE · ITSFOXXY08 · LIVE</sub></p>
-
-<picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://www.gitskins.com/api/section/hero?username=itsfoxxy08&theme=aurora&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&variant=living-identity&label=Vikas%20Choudhary&v=wow-living-identity-1&mode=light" />
-  <img src="https://www.gitskins.com/api/section/hero?username=itsfoxxy08&theme=aurora&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&variant=living-identity&label=Vikas%20Choudhary&v=wow-living-identity-1&mode=dark" width="100%" alt="Vikas Choudhary animated Living Identity portrait and ASCII name" />
-</picture>
+<img src="assets/profile-hero.svg?v=8ab62835ad28" width="100%" alt="Vikas Choudhary profile and automatically updated GitHub statistics" />
 
 <p><strong>Frontend or full-stack engineer</strong> · Delhi, India</p>
 <p>Computer Science Engineer.</p>
