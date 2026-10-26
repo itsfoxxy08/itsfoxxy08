@@ -18,7 +18,9 @@
   <img src="https://github-profile-trophy.vercel.app/?username=itsfoxxy08&theme=nightowl&no-frame=true&no-bg=true&margin-w=4&cache_seconds=86400" alt="Vikas Choudhary's GitHub Trophies" />
 </p>
 <p align="center">
-  <img height="280em" src="https://github-readme-activity-graph.vercel.app/graph?username=itsfoxxy08&theme=nightowl&radius=10" alt="itsfoxxy08's Activity Graph" />
+  <a href="https://github.com/itsfoxxy08">
+    <img src="https://www.gitskins.com/api/section/heatmap?username=itsfoxxy08&theme=github-dark&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&variant=space-shooter&v=space-jet-original-2&mode=dark" width="100%" alt="itsfoxxy08 animated contribution jet" />
+  </a>
 </p>
 
 ## 🛠️ Languages & Tools
