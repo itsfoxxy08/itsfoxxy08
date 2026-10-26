@@ -1,6 +1,16 @@
-<h1 align="center">Hey <img src="https://raw.githubusercontent.com/SP-XD/SP-XD/refs/heads/main/images/Developer.gif" height="30px" width="30px"> I'm Vikas Choudhary</h1>
+<div align="center">
 
-<img src="https://i.pinimg.com/originals/42/b4/22/42b4229a9ec3145edaa895b2415dd720.gif" alt="Banner" width="100%" />
+<p><sub>WOW PROFILE · ITSFOXXY08 · LIVE</sub></p>
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://www.gitskins.com/api/section/hero?username=itsfoxxy08&theme=aurora&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&variant=living-identity&label=Vikas%20Choudhary&v=wow-living-identity-1&mode=light" />
+  <img src="https://www.gitskins.com/api/section/hero?username=itsfoxxy08&theme=aurora&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F230968551%3Fu%3D13b54a5abb1e7113675ef2a054f562041ace7375%26v%3D4&variant=living-identity&label=Vikas%20Choudhary&v=wow-living-identity-1&mode=dark" width="100%" alt="Vikas Choudhary animated Living Identity portrait and ASCII name" />
+</picture>
+
+<p><strong>Frontend or full-stack engineer</strong> · Delhi, India</p>
+<p>Computer Science Engineer.</p>
+<p><a href="https://github.com/itsfoxxy08">GitHub</a> &nbsp;·&nbsp; <a href="https://guns.lol/itsfoxxy">Website</a></p>
+</div>
 
 ## 📌 About Me
 - 💡 <em>✏️ A sentence about you and what you do.</em>
