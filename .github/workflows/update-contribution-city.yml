@@ -1,4 +1,4 @@
-name: Update profile hero
+name: Update contribution city
 
 on:
   schedule:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  update-profile-hero:
+  update-contribution-city:
     runs-on: ubuntu-latest
     steps:
       - name: Check out profile repository
@@ -20,18 +20,18 @@ jobs:
         with:
           node-version: 24
 
-      - name: Refresh profile statistics
-        run: node scripts/update-profile-hero.mjs
+      - name: Refresh contribution city
+        run: node scripts/update-contribution-city.mjs
 
-      - name: Commit updated profile statistics
+      - name: Commit updated contribution city
         run: |
-          if git diff --quiet -- README.md assets/profile-hero.svg; then
-            echo "Profile statistics have not changed."
+          if git diff --quiet -- README.md assets/contribution-city.svg; then
+            echo "Contribution city has not changed."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/profile-hero.svg
-          git commit -m "Update profile statistics"
+          git add README.md assets/contribution-city.svg
+          git commit -m "Update contribution city"
           git push
