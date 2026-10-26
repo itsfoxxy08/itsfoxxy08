@@ -44,13 +44,13 @@ jobs:
 
       - name: Commit updated contribution city
         run: |
-          if git diff --quiet -- README.md assets/contribution-city.svg; then
+          if git diff --quiet -- README.md assets/contribution-city.svg site/contributions.json; then
             echo "Contribution city has not changed."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/contribution-city.svg
+          git add README.md assets/contribution-city.svg site/contributions.json
           git commit -m "Update contribution city"
           git push
