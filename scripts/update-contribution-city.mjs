@@ -72,7 +72,6 @@ function createCity(days) {
   const halfX = 7.3;
   const halfY = 3.7;
   const heightForLevel = [0, 9, 20, 34, 51];
-  const tileColors = ["#030705", "#06110a", "#08180d", "#0a2111", "#0d2c16"];
   const topColors = ["#050907", "#0b2915", "#0e3c1c", "#155527", "#1e7233"];
   const leftColors = ["#020403", "#06190c", "#092511", "#0d3619", "#10451e"];
   const rightColors = ["#030504", "#08200e", "#0b2f15", "#12451f", "#185c29"];
@@ -100,14 +99,16 @@ function createCity(days) {
     const topWest = [west[0], west[1] - height];
     const cellTitle = `${cell.date}: ${cell.count} contribution${cell.count === 1 ? "" : "s"}`;
 
-    shapes.push(`<g><title>${cellTitle}</title>`);
-    if (height > 0) {
-      shapes.push(polygon([east, south, topSouth, topEast], rightColors[level]));
-      shapes.push(polygon([south, west, topWest, topSouth], leftColors[level]));
-      shapes.push(polygon([topNorth, topEast, topSouth, topWest], topColors[level]));
-    } else {
-      shapes.push(polygon([north, east, south, west], tileColors[level], "#0b1a10"));
+    if (height === 0) {
+      shapes.push(`<g><title>${cellTitle}</title>${polygon([north, east, south, west], "none", "#0d2917")}</g>`);
+      continue;
     }
+
+    shapes.push(`<g><title>${cellTitle}</title>`);
+    shapes.push(polygon([north, east, south, west], "#07180d", "#124322"));
+    shapes.push(polygon([east, south, topSouth, topEast], rightColors[level]));
+    shapes.push(polygon([south, west, topWest, topSouth], leftColors[level]));
+    shapes.push(polygon([topNorth, topEast, topSouth, topWest], topColors[level]));
     shapes.push("</g>");
   }
 
