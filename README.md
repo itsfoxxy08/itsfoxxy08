@@ -9,4 +9,4 @@
 
 <p align="center"><code>~/links</code> &nbsp; <a href="https://github.com/itsfoxxy08">GitHub</a> &nbsp;·&nbsp; <a href="https://guns.lol/itsfoxxy">Website</a></p>
 
-<img src="assets/contribution-city.svg?v=008bc87adda0" width="100%" alt="Isometric green GitHub contribution city — open for 360° rotation" />
+<img src="assets/contribution-city.svg?v=3afb01bb1dad" width="100%" alt="Isometric green GitHub contribution city — open for 360° rotation" />
